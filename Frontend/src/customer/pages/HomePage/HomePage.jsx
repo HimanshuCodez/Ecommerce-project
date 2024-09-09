@@ -1,18 +1,16 @@
-import React from 'react'
-import MainCarousel from '../../components/HomeCarousel/MainCarousel'
+import React from "react";
+import MainCarousel from "../../components/HomeCarousel/MainCarousel";
+import HomeSectionCarousel from "../../components/HomeSectionCarousel/HomeSectionCarousel.jsx";
 
 const HomePage = () => {
   return (
-    <div><MainCarousel/>
     <div>
-        others
+      <MainCarousel />
+      <div>
+        <HomeSectionCarousel />
+      </div>
     </div>
-    
-    
-    
-    
-    </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
