@@ -6,7 +6,7 @@ import { MainCarouselData } from "./MainCarouselData.jsx";
 
 const MainCarousel = () => {
   const items = MainCarouselData.map((item) => (<>
-  <div className="min-h-screen w-full sm:px-3 px-2 m-0 mx-auto ">
+  <div className=" w-full sm:px-3 px-2 m-0 mx-auto ">
     <img   className="w-full h-full object-cover" role="presentation" src={item.image} />
     </div>
   </>
