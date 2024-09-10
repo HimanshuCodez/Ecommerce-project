@@ -53,23 +53,23 @@ const HomeSectionCarousel = () => {
             />
           </Button>
         )}
-        <Button
-          onClick={slidePrev}
-          variant="contained"
-          className="z-50"
-          sx={{
-            position: "absolute",
-            top: "8rem",
-            left: "0rem",
-            transform: "translateX(-50%) rotate(90deg)",
-            bgcolor: "white",
-          }}
-          aria-label="next"
-        >
-          <KeyboardArrowLeftIcon
-            sx={{ transform: "rotate(-90deg)", color: "black" }}
-          />
-        </Button>
+ { activeIndex!==0 && <Button 
+    onClick={slidePrev}
+    variant="contained"
+    className="z-50"
+    sx={{
+      position: "absolute",
+      top: "8rem",
+      left: "0rem",
+      transform: "translateX(-50%) rotate(90deg)",
+      bgcolor: "white",
+    }}
+    aria-label="next"
+  >
+    <KeyboardArrowLeftIcon
+      sx={{ transform: "rotate(-90deg)", color: "black" }}
+    />
+  </Button>}
         ;
       </div>
     </div>
