@@ -1,20 +1,6 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-'use client'
-
 import { useState } from 'react'
+import { mens_kurta } from '../../../Data/mens_kurta'
+import ProductCard from '../Product/ProductCard.jsx'
 import {
   Dialog,
   DialogBackdrop,
@@ -86,7 +72,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   return (
@@ -169,7 +155,7 @@ export default function Example() {
           </div>
         </Dialog>
 
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <main className="mx-auto px-4 sm:px-6 ">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
 
@@ -227,7 +213,7 @@ export default function Example() {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
@@ -274,7 +260,11 @@ export default function Example() {
               </form>
 
               {/* Product grid */}
-              <div className="lg:col-span-3">{/* Your content */}</div>
+              <div className="lg:col-span-4 w-full py-5">
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 bg-white px-10'>
+                  {mens_kurta.map((item) => <ProductCard key={item.id} product={item} />)}
+                </div>
+              </div>
             </div>
           </section>
         </main>

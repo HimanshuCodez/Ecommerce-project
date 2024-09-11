@@ -1,13 +1,12 @@
 import React from "react";
 import "./ProductCard.css"
-const ProductCard = () => {
+const ProductCard = ({product}) => {
   return (
-    <div className="productCard w-[15rem] m-3 transition-all cursor-pointer">
+    <div className="productCard w-[14rem] m-3 transition-all cursor-pointer">
       <div className="h-[20rem]">
         <img
           className="h-full w-full object-cover object-left-top "
-          src="https://images.meesho.com/images/products/397495332/d3nfc_400.webp"
-          alt=""
+          src={product.imageUrl}
         />
       </div>
       <div className="textPart bg-white p-3">
