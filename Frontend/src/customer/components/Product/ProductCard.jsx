@@ -7,7 +7,7 @@ const ProductCard = ({product}) => {
 
   
   return (
-    <div className="productCard w-[14rem] m-3 transition-all cursor-pointer">
+    <div className="productCard w-[15rem] m-3 transition-all cursor-pointer">
       <div className="h-[20rem]">
         <img
           className="h-full w-full object-cover object-left-top "

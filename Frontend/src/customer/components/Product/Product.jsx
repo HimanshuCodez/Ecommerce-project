@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { mens_kurta } from '../../../Data/mens_kurta'
 import ProductCard from '../Product/ProductCard.jsx'
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Dialog,
   DialogBackdrop,
@@ -20,7 +21,7 @@ import {
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { filters, singleFilter } from '../../../Data/FilterData.jsx'
-import { FormControlLabel, FormLabel,FormControl, colors } from '@mui/material';
+import { FormControlLabel, FormLabel,FormControl } from '@mui/material';
 
 const sortOptions = [
  
@@ -169,10 +170,11 @@ export default function Product() {
             </h2>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
-              {/* Filters */}
+          
               <form className="hidden lg:block">
-                
-
+             
+              <div className=' py-10 flex justify-between items-center'>  <h1 className='text-lg opacity-50  font-bold'>Filters</h1>
+              <FilterListIcon/></div>
                 {filters.map((section) => (
                   <Disclosure key={section.id} as="div" className="border-b border-gray-200 py-6">
                     <h3 className="-my-3 flow-root">
