@@ -15,6 +15,7 @@ import {
 } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { dummyData } from '../../../Data/dummy.jsx'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -262,7 +263,7 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full py-5">
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 bg-white px-10'>
-                  {mens_kurta.map((item) => <ProductCard key={item.id} product={item} />)}
+                  {dummyData.map((item,i) => <ProductCard key={i} product={item} />)}
                 </div>
               </div>
             </div>
