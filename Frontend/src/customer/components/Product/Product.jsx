@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { mens_kurta } from '../../../Data/mens_kurta'
 import ProductCard from '../Product/ProductCard.jsx'
+import {useLocation,useNavigate} from 'react-router-dom'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Dialog,
@@ -39,6 +40,8 @@ function classNames(...classes) {
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const location=useLocation()
+const navigate= useNavigate()
+
   const handleFilter =( value,sectionId)=>{
     const searchParams= new URLSearchParams(location.search)
 
@@ -55,6 +58,18 @@ export default function Product() {
 else{
   filterValue.push(value)
 }
+if(filterValue.length>0){
+  searchParams.set(sectionId,filterValue.join(","))
+ 
+}
+const query=searchParams.toString();
+navigate({search:`?${query}`})
+}
+const handleRadioFilterChange =(e,sectionId)=>{
+  const searchParams= new URLSearchParams(location.search)
+  searchParams.set(sectionId,e.target.value)
+  const query=searchParams.toString();
+navigate({search:`?${query}`})
 }
   return (
     <div className="bg-white">
@@ -205,9 +220,10 @@ else{
                     </h3>
                     <DisclosurePanel className="pt-6">
                       <div className="space-y-4">
-                        {section.options.map((option, optionIdx) => (
+                        {section.options.map((option, optionId) => (
                           <div key={option.value} className="flex items-center">
                             <input
+                            onChange={()=>handleFilter(option.value,section.id)}
                               defaultValue={option.value}
                               defaultChecked={option.checked}
                               id={`filter-${section.id}-${optionIdx}`}
@@ -249,7 +265,7 @@ else{
                        
                          
                         <>
-                           <FormControlLabel value={option.id} control={<Radio/>} label={option.label} />
+                           <FormControlLabel onClick={(e)=>handleRadioFilterChange(e,section.id)} value={option.value} control={<Radio/>} label={option.label} />
                           
                            </>
                    
