@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Radio, RadioGroup } from "@headlessui/react";
-import { Rating } from "@mui/material";
+import { Button, Rating } from "@mui/material";
 const product = {
   name: "Basic Tee 6-Pack",
   price: "$192",
@@ -216,12 +216,9 @@ export default function ProductDetails() {
                   </fieldset>
                 </div>
 
-                <button
-                  type="submit"
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Add to bag
-                </button>
+               <Button  color="secondary" variant="contained " sx ={{px:"2rem",py:"1rem",bgcolor:"#9155fd" }}>
+                Add To Cart
+               </Button>
               </form>
             </div>
 
