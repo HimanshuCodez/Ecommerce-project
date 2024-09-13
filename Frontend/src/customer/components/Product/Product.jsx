@@ -38,7 +38,24 @@ function classNames(...classes) {
 
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const location=useLocation()
+  const handleFilter =( value,sectionId)=>{
+    const searchParams= new URLSearchParams(location.search)
 
+    let filterValue = searchParams.getAll(sectionId)
+
+
+    if (filterValue.length>0 && filterValue[0].split(",").includes(value)) {
+      filterValue=filterValue[0].split(",").filter((item)=>item!==value)
+
+      if(filterValue.length===0){
+        searchParams.delete(sectionId)
+    }
+  }
+else{
+  filterValue.push(value)
+}
+}
   return (
     <div className="bg-white">
       <div>
