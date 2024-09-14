@@ -1,9 +1,9 @@
-
-
 import { useState } from "react";
-
+import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
+import { mens_kurta } from "../../../Data/mens_kurta";
 import { Radio, RadioGroup } from "@headlessui/react";
-import { Button, Rating } from "@mui/material";
+import { Box, Button, Grid2, LinearProgress, Rating } from "@mui/material";
+import ProductReviewCard from "./ProductReviewCard";
 const product = {
   name: "Basic Tee 6-Pack",
   price: "$192",
@@ -36,12 +36,10 @@ const product = {
     { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
   ],
   sizes: [
-
     { name: "S", inStock: true },
     { name: "M", inStock: true },
     { name: "L", inStock: true },
     { name: "XL", inStock: true },
-   
   ],
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
@@ -65,7 +63,7 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white lg:px-20">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol
@@ -216,9 +214,13 @@ export default function ProductDetails() {
                   </fieldset>
                 </div>
 
-               <Button  color="secondary" variant="contained " sx ={{px:"2rem",py:"1rem",bgcolor:"#9155fd" }}>
-                Add To Cart
-               </Button>
+                <Button
+                  color="secondary"
+                  variant="contained "
+                  sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
+                >
+                  Add To Cart
+                </Button>
               </form>
             </div>
 
@@ -259,6 +261,101 @@ export default function ProductDetails() {
               </div>
             </div>
           </div>
+        </section>
+        {/* ratings and reviews */}
+        <section>
+          <h1 className="font-bold text-lg pb-4">Recent Review & Rating</h1>
+          <div className="border p-5">
+            <Grid2 container spacing={7}>
+              {/* Reviews stay on the left */}
+              <Grid2 item xs={7}>
+                <div className="space-y-5">
+                  {[1, 1, 1].map((item, index) => (
+                    <ProductReviewCard key={index} />
+                  ))}
+                </div>
+              </Grid2>
+
+              {/* Ratings shifted to the right */}
+              <Grid2 item xs={5} style={{ marginLeft: "auto" }}>
+                <h1 className="text-xl font-semibold pb-2">Product Ratings</h1>
+
+                <div className="flex items-center space-x-6">
+
+                  <Rating value={4.6} precision={0.5} readOnly />
+                  <p className="opacity-60">59858 Ratings</p>
+                </div>
+                <Box className="mt-5 space-x-3">
+                  <Grid2 container alignItems="center" gap={2}>
+                    <Grid2 item xs={2}></Grid2>
+                    <p>Excellent</p>
+                  </Grid2>
+                  <Grid2 item xs={7}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={40}
+                      color="success"
+                    />
+                  </Grid2>
+                  <Grid2 container alignItems="center" gap={2}>
+                    <Grid2 item xs={2}></Grid2>
+                    <p>Very Good</p>
+                  </Grid2>
+                  <Grid2 item xs={7}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={30}
+                      color="success"
+                    />
+                  </Grid2>
+                  <Grid2 container alignItems="center" gap={2}>
+                    <Grid2 item xs={2}></Grid2>
+                    <p>Good</p>
+                  </Grid2>
+                  <Grid2 item xs={7}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={25}
+                     
+                    />
+                  </Grid2>
+                  <Grid2 container alignItems="center" gap={2}>
+                    <Grid2 item xs={2}></Grid2>
+                    <p>Average</p>
+                  </Grid2>
+                  <Grid2 item xs={7}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={20}
+                      color="warning"
+                    />
+                  </Grid2>
+                  <Grid2 container alignItems="center" gap={2}>
+                    <Grid2 item xs={2}></Grid2>
+                    <p>Poor</p>
+                  </Grid2>
+                  <Grid2 item xs={7}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={10}
+                      color="error"
+                    />
+                  </Grid2>
+                </Box>
+              </Grid2>
+            </Grid2>
+          </div>
+        </section>
+        <section className="pt-10 ">
+          <h1 className="py-5 text-xl font-bold">Similar Products</h1>
+<div className=" flex flex-wrap space-x-5">
+  {mens_kurta.map((item)=><HomeSectionCard product={item}/>)}
+</div>
         </section>
       </div>
     </div>
