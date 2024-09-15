@@ -3,7 +3,7 @@ import React from "react";
 import AdjustIcon from '@mui/icons-material/Adjust';
 const OrderCard = () => {
   return (
-    <div>
+    <div className="p-5 shadow-md hover:shadow-2xl shadow-black ">
       <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
         <Grid item xs={6}>
           <div className="flex cursor-pointer ">
@@ -24,28 +24,22 @@ const OrderCard = () => {
         <p>₹4697</p>
         </Grid>
         <Grid item xs={4}>
-{true &&<p>
+{true && <div> <p>
     <AdjustIcon sx={{width:"15px", height:"15px"}} className="text-green-600  mr-2 text-sm"/>
     <span>
         Delivered On March 03 
     </span>
-</p>}
+   
+</p>
+<p className="text-xs">Your Item Has Been Delivered</p>
+</div>}
 {false &&<p>
     <AdjustIcon/>
     <span>
    Expected Delivery On March 03 
     </span>
 </p>}
-<p>
-    <span>
-    Delivered On March 03 
-    </span>
-</p>
-<p>
-    <span>
-    Delivered On March 03 
-    </span>
-</p>
+
         </Grid>
       </Grid>
     </div>

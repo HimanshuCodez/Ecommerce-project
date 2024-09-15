@@ -9,10 +9,10 @@ const orderStatus=[
 ]
 const Order = () => {
   return (
-    <div>
+    <div className="lg:px-20 px:5" >
       <Grid container sx={{ justifyContent: "space-between" }}>
         <Grid item xs={2.5}>
-          <div className="h-auto shadow-lg bg-white p-5 sticky top-5">
+          <div className="h-auto border ml-2 shadow-lg bg-white p-5 sticky top-5">
             <h1 className="font-bold text-lg">Filter</h1>
             <div className="space-y-4  mt-10 ">
                 <h1 className="font-semibold">Order Status</h1>
@@ -26,8 +26,12 @@ const Order = () => {
             </div>
           </div>
         </Grid>
-        <Grid item xs={9}>
-            <OrderCard/>
+        <Grid  item xs={9}>
+            <div className="space-y-5">
+
+            {[1,1,1,1,1,1].map((item)=><OrderCard/>)}
+            </div>
+            
 
         </Grid>
       </Grid>
