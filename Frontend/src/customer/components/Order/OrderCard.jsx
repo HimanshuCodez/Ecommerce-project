@@ -9,7 +9,7 @@ const OrderCard = () => {
     <div onClick={()=>navigate(`/account/order/${5}`)} className="p-5 shadow-md hover:shadow-2xl shadow-black ">
       <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
         <Grid item xs={6}>
-          <div className="flex cursor-pointer ">
+          <div className="flex cursor-pointer ">/
             <img
               className="w-[5rem] h-[5rem] object-cover object-top"
               src="https://m.media-amazon.com/images/I/810RoZM-PaL._AC_UL320_.jpg"
