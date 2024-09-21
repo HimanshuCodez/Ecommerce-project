@@ -1,5 +1,6 @@
 import User from "../models/user.model"
 import bcrypt from 'bcrypt'
+import jwtProvider from '../services/jwtProvider.js'
 const createUser = async (userData) => {
     try {
         let { firstName, lastName, email, password } = userData
@@ -19,9 +20,10 @@ const createUser = async (userData) => {
 
     }
 }
+//populate se andr ki fields nhi milegi like zip code, number usse jisko populate kr rhe h uski object id milti h jisse hm sbhi address field ki defined properties ko access kr skte h 
 const findUserById = async (userId) => {
     try {
-        const user = await User.findById(userId)
+        const user = await User.findById(userId).populate("address")
         if (!user) {
             throw new Error("user not found by id ", userId);
         }
@@ -46,12 +48,34 @@ const findUserByEmail = async (email) => {
 
     }
 }
-//jwt
+//jwt //potential error in getUserIdFromtoken
 const  getUserProfileByToken = async (token)=>{
+    try {
+        const userId=jwtProvider.getUserIdFromToken(token)
+        const user = await findUserById(userId)
+        if (!user) {
+            throw new Error("user not found with id :",userId)
+        }
+        return user;
+    } catch (error) {
+        throw new Error("error.message");
+        
+    }
 
+}
+const getAllUsers = async () => {
+    try {
+        const user=await User.find()
+        return users;
+    } catch (error) {
+        throw new Error("error.message");
+        
+    }
 }
 export {
     createUser,
     findUserById,
-    findUserByEmail
+    findUserByEmail,
+    getUserProfileByToken,
+    getAllUsers
 }
