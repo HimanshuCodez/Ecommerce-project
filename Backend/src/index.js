@@ -3,7 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 const  app = express()
-
+import authRouters from "./routes/auth.route.js"
 dotenv.config()
 
 const PORT =process.env.PORT || 3000
@@ -27,6 +27,6 @@ app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)
   })
 
-
+app.use("/auth",authRouters)
  
-  
+  export default app
