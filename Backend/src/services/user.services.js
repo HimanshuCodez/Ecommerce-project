@@ -36,7 +36,7 @@ const findUserById = async (userId) => {
 
 
 }
-const findUserByEmail = async (email) => {
+const getUserByEmail = async (email) => {
     try {
         const user = await User.findOne({ email })
         if (!user) {
@@ -75,7 +75,7 @@ const getAllUsers = async () => {
 export {
     createUser,
     findUserById,
-    findUserByEmail,
+    getUserByEmail,
     getUserProfileByToken,
     getAllUsers
 }
