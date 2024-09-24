@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 const  app = express()
 import authRouters from "./routes/auth.route.js"
+import userRouters from "./routes/user.route.js"
 dotenv.config()
 
 const PORT =process.env.PORT || 3000
@@ -27,6 +28,7 @@ app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)
   })
 
-app.use("/auth",authRouters)
+app.use("/auth",authRouters);
+app.use("/users",userRouters);
  
   export default app

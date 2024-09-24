@@ -1,6 +1,6 @@
-import User from "../models/user.model"
+import User from "../models/user.model.js"
 import bcrypt from 'bcrypt'
-import jwtProvider from '../services/jwtProvider.js'
+import jwtProvider from '../config/jwtProvider.js'
 const createUser = async (userData) => {
     try {
         let { firstName, lastName, email, password } = userData
