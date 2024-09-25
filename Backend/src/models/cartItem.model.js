@@ -34,5 +34,5 @@ const cartItemsSchema = new mongoose.Schema({
        },
 })
 
-const cartItems = mongoose.model("cartItems",cartItemsSchema)
-export default cartItems
+const CartItem = mongoose.model("cartItems",cartItemsSchema)
+export default CartItem
