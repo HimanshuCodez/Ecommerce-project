@@ -29,6 +29,6 @@ app.listen(PORT, () => {
   })
 
 app.use("/auth",authRouters);
-app.use("/users",userRouters);
+app.use("api/users",userRouters);
  
   export default app

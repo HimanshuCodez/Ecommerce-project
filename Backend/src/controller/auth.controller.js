@@ -1,7 +1,7 @@
 import userService from '../services/user.service.js'
 import jwtProvider from '../config/jwtProvider.js'
 import bcrypt from 'bcrypt'
-import cartService from '../services/cart.service.js'
+// import cartService from '../services/cart.service.js'
 //madded hooks
 const jwtprovider= jwtProvider();
 const userservice= userService();
@@ -13,10 +13,10 @@ const authController = () => {
     
             try {
                 const user =await userservice.createUser(req.body)
-                const jwt=jwtprovider.getUserIdFromToken(user._id);
+                const jwt=jwtprovider.generateToken(user._id);
             //user ke create hote hi cart bhi create ho jaye
-                await cartService.createCart(user);
-                return res.return(200).send({jwt,message:"register success"})
+                // await cartService.createCart(user);
+                return res.status(200).send({jwt,message:"register success"})
             
             
             } catch (error) {
@@ -28,7 +28,7 @@ const authController = () => {
             login:async(req, res) => {
                 const { email, password } = req.body;
                try {
-                const user = await userservice.getUserByEmail
+                const user = await userservice.getUserByEmail(email)
                 if (!user) {
                     return res.status(404).send({message:"user not founf by email:",email})
                 }

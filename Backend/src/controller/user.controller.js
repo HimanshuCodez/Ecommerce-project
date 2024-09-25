@@ -4,9 +4,10 @@ const userservice= userService();
 const userController = () => {
     return {
         getUserProfile: async (req,res) => {
+            const jwt=req.headers.authorization?.split(" ")[1];
             try {
                 //jb token aayega to split se array bnakr uske 1th index ki value lelinge ex:[bearer,token]
-                const jwt=req.headers.authorization?.split(" ")[1];
+                
                 if (!jwt) {
                     return res.status(400).send({error:"tokken not found"})
                 }
