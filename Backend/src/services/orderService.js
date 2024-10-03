@@ -111,4 +111,15 @@ async function deleteOrder(orderId){
 }
 
 
-export default orderService
+export {
+    CreateOrder,
+    placeOrder,
+    confirmedOrder,
+    shipOrder,
+    deliverOrder,
+    cancelledOrder,
+    findOrderById,
+    userOrderHistory,
+    getAllOrders,
+    deleteOrder
+}
