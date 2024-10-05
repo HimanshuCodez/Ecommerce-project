@@ -1,8 +1,9 @@
 import express from 'express'
+
+const router=express.Router();
 import userController from '../controller/user.controller.js'
 const usercontroller= userController();
 
-const router=express.Router();
 router.get("/profile",usercontroller.getUserProfile);
 router.get("/",usercontroller.getAllUsers);
 
