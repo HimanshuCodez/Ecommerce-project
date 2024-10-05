@@ -1,4 +1,4 @@
-import { updateCartItems } from "../services/cartItem.service.js"
+import { removeCartItems, updateCartItems } from "../services/cartItem.service.js"
 
 
 const updatedCartItem=async(req,res)=>{
@@ -11,3 +11,16 @@ const updatedCartItem=async(req,res)=>{
     }
 
 }
+const removeCartItem=async(req,res)=>{
+    const user = req.user;
+    try {
+         await removeCartItems(user._id,req.params.id,req.body);
+        return res.status(200).send({message:"cart item removed successfully"});
+    } catch (error) {
+        return res.status(500).send({error:error.message})
+    }
+
+}
+
+
+export { updatedCartItem , removeCartItem}

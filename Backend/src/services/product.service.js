@@ -148,6 +148,7 @@ export {
     deleteProduct,
     updateProduct,
     findProductById,
-    createMultipleProduct
+    createMultipleProduct,
+    getAllProducts
 
 }
