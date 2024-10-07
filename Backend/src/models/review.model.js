@@ -1,6 +1,6 @@
 import mongoose, { Mongoose } from "mongoose";
 
-const reviewSchema = new Mongoose({
+const reviewSchema = new mongoose.Schema({
 review:{
     type:String,
     required:true,
@@ -17,7 +17,7 @@ user:
  },
  createdAt:{
     type:Date,
-    default:Date.now()
+    default:Date.now
  },
 })
 const Review = mongoose.model("reviews",reviewSchema)

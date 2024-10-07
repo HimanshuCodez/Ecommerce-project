@@ -1,10 +1,10 @@
 import express from 'express'
 const router=express.Router();
 import { authenticate } from '../middlewares/authenticate.js';
-import { createOrder, findOrderById, orderHistory } from '../controller/order.controller.js';
+import { createOrders, findOrderByIds, orderHistorys } from '../controller/order.controller.js';
 
 
-router.post("/",authenticate,createOrder);
-router.get("/user",authenticate,orderHistory);
-router.get(":id",authenticate,findOrderById)
+router.post("/",authenticate,createOrders);
+router.get("/user",authenticate,orderHistorys);
+router.get(":id",authenticate,findOrderByIds)
 export default router

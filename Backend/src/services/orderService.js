@@ -3,7 +3,7 @@ import Order from "../models/order.model.js";
 import cartService from "../services/cart.service.js"
 const cartservice = cartService();
 
-async function CreateOrder(user,shippAddress){
+async function createOrder(user,shippAddress){
 let address;
 if (shippAddress._id) {
     let existAddress= await Address.findById(shippAddress._id)
@@ -112,7 +112,7 @@ async function deleteOrder(orderId){
 
 
 export {
-    CreateOrder,
+    createOrder,
     placeOrder,
     confirmedOrder,
     shipOrder,

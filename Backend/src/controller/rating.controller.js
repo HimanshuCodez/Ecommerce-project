@@ -1,7 +1,7 @@
 
 import { createRating,getProductRating } from "../services/rating.service.js";
 
-const createRating = async(res,req)=>{
+const createRatings = async(res,req)=>{
     const user = req.user;
 try {
     const review = await createRating(req.body,user)
@@ -10,7 +10,7 @@ try {
     return res.status(500).send({error:error.message})
 }
 }
-const getAllRating = async(res,req)=>{
+const getAllRatings = async(res,req)=>{
     const productId= req.params.productId
     const user = req.user;
 try {
@@ -21,5 +21,5 @@ try {
 }
 }
 export {
-    createRating,getAllRating
+    createRatings,getAllRatings
 }

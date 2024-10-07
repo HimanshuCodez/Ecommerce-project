@@ -41,7 +41,7 @@ async function createProduct(reqData) {
 
     }
     const product = new Product({
-        title=reqData.title,
+        title:reqData.title,
         color: reqData.color,
         description: reqData.description,
         discountedPercent: reqData.discountedPercent,
@@ -75,7 +75,7 @@ async function findProductById(id) {
 }
 
 
-async function getAllProducts(reqQuery) {
+async function getAllProduct(reqQuery) {
     let { category, color, sizes, minPrice, maxPrice, minDiscount, sort, stock, pageNumber, pageSize } = reqQuery;
 
     pageSize = pageSize || 10;
@@ -149,6 +149,6 @@ export {
     updateProduct,
     findProductById,
     createMultipleProduct,
-    getAllProducts
+    getAllProduct
 
 }

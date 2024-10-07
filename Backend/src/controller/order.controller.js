@@ -1,8 +1,8 @@
-import { CreateOrder,findOrderById, userOrderHistory } from "../services/orderService.js";
+import { createOrder,findOrderById, userOrderHistory } from "../services/orderService.js";
 
 
 
-const createOrder = async (req,res)=>{
+const createOrders = async (req,res)=>{
     const user= req.user;
     try {
         let createdOrder =await CreateOrder(user,req.body);
@@ -12,7 +12,7 @@ const createOrder = async (req,res)=>{
     }
 
 }
-const findOrderById = async (req,res)=>{
+const findOrderByIds= async (req,res)=>{
     const user= req.user;
     try {
         let createdOrder =await findOrderById(req.params.id);
@@ -22,7 +22,7 @@ const findOrderById = async (req,res)=>{
     }
 
 }
-const orderHistory = async (req,res)=>{
+const orderHistorys = async (req,res)=>{
     const user= req.user;
     try {
         let createOrder =await userOrderHistory(user._id);
@@ -34,5 +34,5 @@ const orderHistory = async (req,res)=>{
 }
 
 export {
-    createOrder,findOrderById,orderHistory
+    createOrders,findOrderByIds,orderHistorys
 }

@@ -1,12 +1,12 @@
 import express from 'express'
 const router=express.Router();
 import { authenticate } from '../middlewares/authenticate.js';
-import { createReview, getAllReview } from '../controller/review.controller.js';
+import { createReviews, getAllReviews } from '../controller/review.controller.js';
 
 
 
-router.post("/create",authenticate,createReview)
-router.get("/product/:productId",authenticate,getAllReview)
+router.post("/create",authenticate,createReviews)
+router.get("/product/:productId",authenticate,getAllReviews)
 
 
 

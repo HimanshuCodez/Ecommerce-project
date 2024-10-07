@@ -1,6 +1,6 @@
-import { createProduct , deleteProduct, updateProduct,findProductById,getAllProducts,createMultipleProduct} from "../services/product.service.js"
+import { createProduct , deleteProduct, updateProduct,findProductById,getAllProduct,createMultipleProduct} from "../services/product.service.js"
 
-const createProduct =async(req,res)=>{
+const createProducts =async(req,res)=>{
 
     try {
         const product = await createProduct(req.body);
@@ -9,7 +9,7 @@ const createProduct =async(req,res)=>{
         return res.status(500).send({error:error.message})
     }
 }
-const deleteProduct =async(req,res)=>{
+const deleteProducts =async(req,res)=>{
 const productId= req.params.id;
     try {
         const product = await deleteProduct(productId);
@@ -18,7 +18,7 @@ const productId= req.params.id;
         return res.status(500).send({error:error.message})
     }
 }
-const updateProduct =async(req,res)=>{
+const updateProducts =async(req,res)=>{
 const productId= req.params.id;
     try {
         const product = await  updateProduct(productId,req.body);
@@ -28,7 +28,8 @@ const productId= req.params.id;
     }
 }
 
-const findProductById =async(req,res)=>{
+
+const findProductByIds =async(req,res)=>{
 const productId= req.params.id;
     try {
         const product = await  findProductById(productId);
@@ -46,7 +47,7 @@ const productId= req.params.id;
         return res.status(500).send({error:error.message})
     }
 }
-const createMultipleProduct =async(req,res)=>{
+const createMultipleProducts =async(req,res)=>{
 const productId= req.params.id;
     try {
         const products = await  createMultipleProduct(req.body);
@@ -57,5 +58,5 @@ const productId= req.params.id;
 }
 
 export{
-    createProduct,deleteProduct,updateProduct,findProductById,getAllProducts,createMultipleProduct
+    createProducts,deleteProducts,updateProducts,findProductByIds,getAllProducts,createMultipleProducts
 }
