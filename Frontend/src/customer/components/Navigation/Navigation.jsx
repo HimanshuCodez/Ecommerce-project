@@ -22,29 +22,40 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from "react-router-dom";
 import { navigation } from "./navigationData";
 import { deepPurple } from "@mui/material/colors";
+import AuthModal from "../../Auth/AuthModal";
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+ 
+  const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleCategoryClick = (category, section, item, close) => {
-    navigate(`/${category.id}/${section.id}/${item.id}`);
-    close();
-  };
+  const openUserMenu = Boolean(anchorEl);
+ 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseUserMenu = (event) => {
     setAnchorEl(null);
   };
-  const openUserMenu = Boolean(anchorEl);
+
+  const handleOpen = () => {
+    setOpenAuthModal(true);
+  };
+  const handleClose = () => {
+    setOpenAuthModal(false);
+  };
+
+  const handleCategoryClick = (category, section, item, close) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    close();
+  };
+ 
 
   return (
     <div className="bg-white pb-10">
@@ -415,6 +426,7 @@ export default function Navigation() {
           </>
         </nav>
       </header>
+      <AuthModal handleClose={handleClose} open={openAuthModal}/>
     </div>
   );
 }
