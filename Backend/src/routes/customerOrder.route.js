@@ -6,5 +6,5 @@ import { createOrders, findOrderByIds, orderHistorys } from '../controller/order
 
 router.post("/",authenticate,createOrders);
 router.get("/user",authenticate,orderHistorys);
-router.get(":id",authenticate,findOrderByIds)
+router.get("/:id",authenticate,findOrderByIds)
 export default router

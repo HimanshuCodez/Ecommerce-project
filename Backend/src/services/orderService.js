@@ -14,7 +14,7 @@ else{
     address.user=user;
     await address.save();
 
-    user.addresses.push(address);
+    user.address.push(address);
     await user.save();
 }
 
@@ -25,7 +25,7 @@ const cart = await cartservice.findUserCart(user._id);
 const orderItems=[];
 
 for (const item of cart.cartItems){
-    const orderItem= new orderItems({
+    const orderItem= new OrderItem({
         price:item.price,
         product:item.product,
         quantity:item.quantity,
@@ -38,7 +38,7 @@ for (const item of cart.cartItems){
     orderItems.push(createdOrderItem);
 }
 //created maybe
-const createOrder = new Order({
+const createdOrder = new Order({
     user,
     orderItems,
     totalPrice:cart.totalPrice,
@@ -51,7 +51,7 @@ const createOrder = new Order({
 
 
 
-const savedOrder= await createOrder.save();
+const savedOrder= await createdOrder.save();
 return savedOrder;
 }
 

@@ -2,7 +2,7 @@ import { removeCartItems, updateCartItems } from "../services/cartItem.service.j
 
 
 const updatedCartItem=async(req,res)=>{
-    const user = req.user;
+    const user =  await req.user;
     try {
         const updatedCartItem = await updateCartItems(user._id,req.params.id,req.body);
         return res.status(200).send(updatedCartItem);
@@ -12,7 +12,7 @@ const updatedCartItem=async(req,res)=>{
 
 }
 const removeCartItem=async(req,res)=>{
-    const user = req.user;
+    const user = await req.user;
     try {
          await removeCartItems(user._id,req.params.id,req.body);
         return res.status(200).send({message:"cart item removed successfully"});

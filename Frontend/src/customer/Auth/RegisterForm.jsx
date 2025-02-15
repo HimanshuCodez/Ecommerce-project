@@ -1,22 +1,21 @@
-import { Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
-  const handleSubmit = (e) => {
+    const navigate = useNavigate();
+  const handleSubmit = (event) => {
     // default behaviour submit hote hi refresh ho jata h
-    e.preventDefault();
-    console.log("address");
-    const data = new FormData(e.currentTarget);
-    const address = {
+    event.preventDefault();
+ 
+    const data = new FormData(event.currentTarget);
+    const userData = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
-      streetAddress: data.get("streetAddress"),
-      city: data.get("city"),
-      state: data.get("state"),
-      zipCode: data.get("zip"),
-      mobile: data.get("phoneNumber"),
+      email: data.get("email"),
+      password: data.get("password"),
     };
-    console.log("address", address);
+    console.log("userData", userData);
   };
   return (
     <div>
@@ -32,8 +31,53 @@ const RegisterForm = () => {
               autoComplete="given-name"
             />
           </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="lastName"
+              name=" lastName"
+              label="Last Name"
+              fullWidth
+              autoComplete="given-name"
+            />
+          </Grid>
+          <Grid item xs={12} >
+            <TextField
+              required
+              id="email"
+              name="email"
+              label="Email"
+              fullWidth
+              autoComplete="email"
+            />
+          </Grid>
+          <Grid item xs={12} >
+            <TextField
+              required
+              id="password"
+              name="password"
+              label="Password"
+              fullWidth
+              autoComplete="password"
+            />
+          </Grid>
+          <Grid item xs={12} >
+           <Button className=" bg-[#9155FD] w-full"
+           type='submit'
+           variant="contained"
+           size={{padding:".8rem 0 ", bgcolor:"#9155FD"}}>
+
+            Register
+           </Button>
+          </Grid>
         </Grid>
       </form>
+      <div className="flex justify-center flex-col items-center">
+        <div className="py-3 flex items-center">
+            <p>if you have already account?</p>
+            <Button onClick={()=>navigate("/login")} className="ml-5 " size='small' >Login</Button>
+        </div>
+      </div>
     </div>
   );
 };

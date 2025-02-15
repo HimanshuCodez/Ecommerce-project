@@ -15,7 +15,7 @@ const product = {
   ],
   images: [
     {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
+      src: "https://rukminim2.flixcart.com/image/612/612/xif0q/top/s/q/w/xs-top-apple-new-coffee-dream-beauty-fashion-original-imah2gg3uesufvfx.jpeg?q=70",
       alt: "Two each of gray, white, and black shirts laying flat.",
     },
     {
