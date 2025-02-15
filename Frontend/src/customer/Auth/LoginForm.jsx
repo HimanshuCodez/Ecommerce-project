@@ -44,13 +44,14 @@ const LoginForm = () => {
             />
           </Grid>
           <Grid item xs={12} >
-           <Button className=" bg-[#9155FD] w-full"
-           type='submit'
-           variant="contained"
-           size={{padding:".8rem 0 ", bgcolor:"#9155FD"}}>
-
-            Login
-           </Button>
+          <Button
+  sx={{ padding: "0.8rem 0", backgroundColor: "#9155FD" }} // ✅ Correct styling using sx
+  type="submit"
+  variant="contained"
+  fullWidth
+>
+  Login
+</Button>
           </Grid>
         </Grid>
       </form>

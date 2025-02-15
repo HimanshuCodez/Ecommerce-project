@@ -9,6 +9,7 @@ import ProductDetails from "../customer/components/ProductDetails/ProductDetails
 import Checkout from "../customer/components/Checkout/Checkout.jsx";
 import Order from "../customer/components/Order/Order.jsx";
 import OrderDetails from "../customer/components/Order/OrderDetails.jsx";
+
 const CustomerRoute = () => {
   return (
     <div>
@@ -23,6 +24,7 @@ const CustomerRoute = () => {
         <Route path='/checkout' element={<Checkout/>} ></Route>
         <Route path='/account/order' element={<Order/>} ></Route>
         <Route path='/account/order/:orderId' element={<OrderDetails/>} ></Route>
+        
 {/*        
         
         

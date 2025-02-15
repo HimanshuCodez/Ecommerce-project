@@ -44,7 +44,6 @@ app.use("/api/cart",cartRouter);
 app.use("/api/cart_items",cartItemRouter);//order 
 app.use("/api/orders",customerOrderRouter);
 app.use("/api/admin/orders",adminOrderRouter);
-
 app.use("/api/reviews",reviewRouter);
 app.use("/api/ratings",ratingRouter);
 

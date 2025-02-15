@@ -29,7 +29,7 @@ export const mens_kurta=[
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/l/f/r/xl-k-spl668-yellow-sg-leman-original-imagznqcrahgq9rf.jpeg?q=70",
+        "imageUrl": "https://assets.sheinindia.in/medias/shein_sys_master/root/20250122/Ekud/6790bc94663dbe1c5ff10027/-473Wx593H-443315152-pink-MODEL.jpg",
         "brand": "SG LEMAN",
         "title": "Men Embroidered Jacquard Straight Kurta",
         "color": "Yellow",

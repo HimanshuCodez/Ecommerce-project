@@ -30,7 +30,7 @@ const authController = () => {
                try {
                 const user = await userservice.getUserByEmail(email)
                 if (!user) {
-                    return res.status(404).send({message:"user not founf by email:",email})
+                    return res.status(404).send({message:"user not found by email:",email})
                 }
                 const isPasswordValid = await bcrypt.compare(password,user.password);
                 if (!isPasswordValid) {

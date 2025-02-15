@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
- 
   Popover,
   PopoverButton,
   PopoverGroup,
@@ -14,7 +13,6 @@ import {
   TabPanel,
   TabPanels,
 } from "@headlessui/react";
-
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
@@ -24,19 +22,23 @@ import {
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from "react-router-dom";
+import {useEffect} from 'react'
+import { useNavigate,useLocation } from "react-router-dom";
 import { navigation } from "./navigationData";
 import { deepPurple } from "@mui/material/colors";
 import AuthModal from "../../Auth/AuthModal";
-
+import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
- 
+  const dispatch = useDispatch();
+ const location = useLocation();
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
- 
+  const jwt = localStorage.getItem("jwt") || "";
+  const authJwt = useSelector(state => state.auth?.jwt);
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,6 +51,7 @@ export default function Navigation() {
   };
   const handleClose = () => {
     setOpenAuthModal(false);
+ 
   };
 
   const handleCategoryClick = (category, section, item, close) => {
@@ -56,6 +59,23 @@ export default function Navigation() {
     close();
   };
  
+
+
+  useEffect(() => {
+    if (jwt && !authJwt) {
+      dispatch(getUser(jwt));
+    }
+  }, [jwt, authJwt, dispatch]);
+ 
+useEffect(() => {
+  if (auth.user) {
+    handleClose()
+    if (location.pathname === "/login" || location.pathname ==="/register") {
+      navigate(-1)
+      
+    }
+  }
+}, [auth.user])
 
   return (
     <div className="bg-white pb-10">
@@ -221,7 +241,7 @@ export default function Navigation() {
                     <span className="sr-only">Your Company</span>
                     <img
                       alt=""
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://imgs.search.brave.com/6uDg5DGHiB1HJCOSkRhkxdXYOytr94WjFv0EHamv42c/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L3Nob3BwaW5nLWNh/cnQtcG5nL3Nob3Bw/aW5nLWNhcnQtZG9u/YXRpb25zLXNob3Bw/aW5nLWNhcnRzLWZv/cm1zLW1lbWJlcnNo/aXB3b3Jrcy0yMS5w/bmc"
                       className="h-8 w-8 mr-2"
                     />
                   </a>
@@ -345,7 +365,7 @@ export default function Navigation() {
                         aria-controls={open ? "basic-menu" : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
-                        // onClick={handleUserClick}
+                        
                         sx={{
                           bgcolor: deepPurple[500],
                           color: "white",
@@ -354,15 +374,15 @@ export default function Navigation() {
                       >
                       
                       </Avatar>
-                      {/* <Button
+                      <Button
                         id="basic-button"
                         aria-controls={open ? "basic-menu" : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
-                        onClick={handleUserClick}
+                        
                       >
                         Dashboard
-                      </Button> */}
+                      </Button>
                       <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -382,12 +402,12 @@ export default function Navigation() {
                       </Menu>
                     </div>
                
-                    {/* <Button 
-                      
+                    <Button 
+                      onClick={handleOpen}
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       Signin
-                    </Button> */}
+                    </Button>
                 
                 </div>
 
@@ -426,7 +446,8 @@ export default function Navigation() {
           </>
         </nav>
       </header>
-      <AuthModal handleClose={handleClose} open={openAuthModal}/>
+      {openAuthModal && <AuthModal open={openAuthModal} onClose={handleClose} />}
+
     </div>
   );
 }

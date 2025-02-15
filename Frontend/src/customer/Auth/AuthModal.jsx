@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+
 import RegisterForm from "./RegisterForm";
 import { useLocation } from "react-router-dom";
 import LoginForm from "./LoginForm";

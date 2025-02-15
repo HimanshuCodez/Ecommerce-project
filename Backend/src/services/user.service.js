@@ -8,7 +8,7 @@ const userService = () => {
     return {
         createUser: async (userData) => {
             try {
-                let { firstName, lastName, email, password, userName } = userData;
+                let { firstName, lastName, email, password } = userData;
 
                 const isUserExist = await User.findOne({ email });
                 if (isUserExist) {
@@ -23,20 +23,21 @@ const userService = () => {
                     lastName, 
                     email, 
                     password,
-                    userName: userName || undefined // Prevent inserting null value for userName
+                   
                 });
 
                 console.log("User created", user);
                 return user;
 
             } catch (error) {
-                throw new Error(error.message);
+               console.log("user not created", error);
+               
             }
         },
         findUserById: async (userId) => {
             try {
                 const user = await User.findById(userId)
-                // .populate("address");
+                .populate("address");
                 if (!user) {
                     throw new Error("User not found by ID: " + userId);
                 }

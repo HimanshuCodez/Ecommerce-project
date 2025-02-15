@@ -18,11 +18,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,  // Ensure that email is unique
     },
-    userName: {
-        type: String,
-        unique: true,  // Ensure that userName is unique
-        sparse: true,  // This allows multiple documents with userName as `null` or undefined
-    },
+    
     role: {
         type: String,
         required: true,
