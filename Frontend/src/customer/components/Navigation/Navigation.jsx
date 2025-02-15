@@ -26,6 +26,7 @@ import {useEffect} from 'react'
 import { useNavigate,useLocation } from "react-router-dom";
 import { navigation } from "./navigationData";
 import { deepPurple } from "@mui/material/colors";
+import { getUser, logout } from "../../../../State/Auth/Actions";
 import AuthModal from "../../Auth/AuthModal";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +39,8 @@ export default function Navigation() {
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt") || "";
-  const authJwt = useSelector(state => state.auth?.jwt);
+  const {auth} = useSelector(store=>store);
+
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -62,10 +64,10 @@ export default function Navigation() {
 
 
   useEffect(() => {
-    if (jwt && !authJwt) {
+    if (jwt) {
       dispatch(getUser(jwt));
     }
-  }, [jwt, authJwt, dispatch]);
+  }, [jwt, auth.jwt]);
  
 useEffect(() => {
   if (auth.user) {
@@ -76,7 +78,11 @@ useEffect(() => {
     }
   }
 }, [auth.user])
-
+const handleLogout=()=>{
+  localStorage.removeItem('jwt');
+  dispatch(logout());
+  handleCloseUserMenu()
+}
   return (
     <div className="bg-white pb-10">
       {/* Mobile menu */}
@@ -355,92 +361,81 @@ useEffect(() => {
                 </PopoverGroup>
 
                
-              <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-               
-                    <div>
-                      <Avatar
-                        className="text-white"
-                        onClick={handleUserClick}
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        
-                        sx={{
-                          bgcolor: deepPurple[500],
-                          color: "white",
-                          cursor: "pointer",
-                        }}
-                      >
-                      
-                      </Avatar>
-                      <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        
-                      >
-                        Dashboard
-                      </Button>
-                      <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={openUserMenu}
-                        onClose={handleCloseUserMenu}
-                        MenuListProps={{
-                          "aria-labelledby": "basic-button",
-                        }}
-                      >
-                         <MenuItem  onClick={handleCloseUserMenu} >Profile</MenuItem>
-                        <MenuItem onClick={()=>navigate("/account/order")}>My Orders
-                          {/* {auth.user?.role === "ROLE_ADMIN"
-                            ? "Admin Dashboard"
-                            : "My Orders"} */}
-                        </MenuItem>
-                        <MenuItem >Logout</MenuItem>
-                      </Menu>
-                    </div>
-               
-                    <Button 
-                      onClick={handleOpen}
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      Signin
-                    </Button>
-                
-                </div>
+                <div className="ml-auto flex items-center">
+  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+    {auth.user?.firstName ? (
+      <div>
+        <Avatar
+          className="text-white"
+          onClick={handleUserClick}
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          sx={{
+            bgcolor: deepPurple[500],
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          {auth.user?.firstName[0].toUpperCase()}
+        </Avatar>
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          Dashboard
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={openUserMenu}
+          onClose={handleCloseUserMenu}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
+          <MenuItem onClick={() => navigate("/account/order")}>
+            My Orders
+          </MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
+      </div>
+    ) : (
+      <Button
+        onClick={handleOpen}
+        className="text-sm font-medium text-gray-700 hover:text-gray-800"
+      >
+        Sign in
+      </Button>
+    )}
+  </div>
 
-                 
+  {/* Search */}
+  <div className="flex lg:ml-6">
+    <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+      <span className="sr-only">Search</span>
+      <MagnifyingGlassIcon aria-hidden="true" className="h-6 w-6" />
+    </a>
+  </div>
 
-                  {/* Search */}
-                  <div className="flex lg:ml-6">
-                    <a
-                      href="#"
-                      className="p-2 text-gray-400 hover:text-gray-500"
-                    >
-                      <span className="sr-only">Search</span>
-                      <MagnifyingGlassIcon
-                        aria-hidden="true"
-                        className="h-6 w-6"
-                      />
-                    </a>
-                  </div>
+  {/* Cart */}
+  <div className="ml-4 flow-root lg:ml-6">
+    <a href="#" className="group -m-2 flex items-center p-2">
+      <ShoppingBagIcon
+        aria-hidden="true"
+        className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+      />
+      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+        0
+      </span>
+      <span className="sr-only">items in cart, view bag</span>
+    </a>
+  </div>
+</div>
 
-                  {/* Cart */}
-                  <div className="ml-4 flow-root lg:ml-6">
-                    <a href="#" className="group -m-2 flex items-center p-2">
-                      <ShoppingBagIcon
-                        aria-hidden="true"
-                        className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      />
-                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                        0
-                      </span>
-                      <span className="sr-only">items in cart, view bag</span>
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </>

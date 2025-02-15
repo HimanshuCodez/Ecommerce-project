@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from './ActionTypes';
+const token =localStorage.getItem('jwt');
 const registerRequest=()=>({type:REGISTER_REQUEST})
 const registerSuccess=(user)=>({type:REGISTER_SUCCESS,payload:user})
 const registerFailure=(error)=>({type:REGISTER_FAILURE,payload:error})
 import { API_BASE_URL } from '../../src/config/apiConfig';
+
 export const register= (userData)=>async(dispatch)=>{
     dispatch(registerRequest())
 try {
@@ -38,13 +40,15 @@ try {
     dispatch(loginFailure(error.message))
 }
 }
+
+
 const getUserRequest=()=>({type:GET_USER_REQUEST})
 const getUserSuccess=(user)=>({type:GET_USER_SUCCESS,payload:user})
 const getUserFailure=(error)=>({type:GET_USER_FAILURE,payload:error})
-export const getUser=(jwt)=>async(dispatch)=>{
+export const getUser=(jwt)=> async (dispatch)=>{
     dispatch(getUserRequest())
 try {
-    const response = await axios.get(`${API_BASE_URL}/api/profile`,{
+    const response = await axios.get(`${API_BASE_URL}/api/users/profile`,{
         headers: {
             'Authorization': `Bearer ${jwt}`,
         },
@@ -54,7 +58,9 @@ try {
    
     dispatch(getUserSuccess(user))
 } catch (error) {
-    dispatch(getUserFailure(error.message))
+   console.log("get user jwt",error);
+   
+        dispatch(getUserFailure(error.response?.data?.message || "Something went wrong"));
 }
 }
 
